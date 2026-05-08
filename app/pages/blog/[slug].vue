@@ -64,10 +64,7 @@ function getSlug(path: string) {
     <div class="max-w-7xl mx-auto px-2 md:px-0">
 
       <div class="mb-10">
-        <NuxtLink
-          to="/blog"
-          class="flex items-center gap-1.5 text-sm text-slate-400 transition hover:text-white w-fit"
-        >
+        <NuxtLink to="/blog" class="flex items-center gap-1.5 text-sm text-slate-400 transition hover:text-white w-fit">
           ← Kembali ke Blog
         </NuxtLink>
       </div>
@@ -81,14 +78,12 @@ function getSlug(path: string) {
 
       <template v-else>
         <div class="relative mb-10 overflow-hidden rounded-xl border border-slate-800 bg-slate-900/60 p-8">
-          <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(99,102,241,0.18),_transparent_65%)]" />
+          <div
+            class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(99,102,241,0.18),_transparent_65%)]" />
 
           <div class="flex flex-wrap gap-1.5 mb-4">
-            <span
-              v-for="tag in post.tags"
-              :key="tag"
-              class="rounded-full bg-indigo-500/10 px-2 py-0.5 text-xs text-indigo-300"
-            >
+            <span v-for="tag in post.tags" :key="tag"
+              class="rounded-full bg-indigo-500/10 px-2 py-0.5 text-xs text-indigo-300">
               {{ tag }}
             </span>
           </div>
@@ -102,7 +97,7 @@ function getSlug(path: string) {
         </div>
 
         <div v-if="post.image" class="mb-8 overflow-hidden rounded-xl border border-slate-800">
-          <img :src="post.image" :alt="post.title" class="w-full object-cover max-h-72" />
+          <img :src="post.image" :alt="post.title" class="w-full object-cover max-h-[650px]" />
         </div>
 
         <div class="flex gap-12">
@@ -111,62 +106,52 @@ function getSlug(path: string) {
               <ContentRenderer :value="post" class="prose" />
             </div>
 
+            <BuyCoffeeCard label="Artikel ini membantu?" />
+
             <div class="mt-10 grid gap-4 sm:grid-cols-2">
-              <NuxtLink
-                v-if="prevPost"
-                :to="`/blog/${getSlug(prevPost.path)}`"
-                class="flex flex-col rounded-xl border border-slate-800 p-4 transition hover:border-indigo-500/50 hover:bg-slate-900/60"
-              >
+              <NuxtLink v-if="prevPost" :to="`/blog/${getSlug(prevPost.path)}`"
+                class="flex flex-col rounded-xl border border-slate-800 p-4 transition hover:border-indigo-500/50 hover:bg-slate-900/60">
                 <span class="mb-1 text-xs text-slate-500">← Artikel Sebelumnya</span>
                 <span class="text-sm font-medium text-white line-clamp-2">{{ prevPost.title }}</span>
               </NuxtLink>
               <div v-else />
 
-              <NuxtLink
-                v-if="nextPost"
-                :to="`/blog/${getSlug(nextPost.path)}`"
-                class="flex flex-col rounded-xl border border-slate-800 p-4 text-right transition hover:border-indigo-500/50 hover:bg-slate-900/60"
-              >
+              <NuxtLink v-if="nextPost" :to="`/blog/${getSlug(nextPost.path)}`"
+                class="flex flex-col rounded-xl border border-slate-800 p-4 text-right transition hover:border-indigo-500/50 hover:bg-slate-900/60">
                 <span class="mb-1 text-xs text-slate-500">Artikel Berikutnya →</span>
                 <span class="text-sm font-medium text-white line-clamp-2">{{ nextPost.title }}</span>
               </NuxtLink>
             </div>
           </div>
 
-          <aside v-if="toc.length" class="hidden xl:block w-52 shrink-0">
-            <div class="sticky top-8">
+          <aside v-if="toc.length"
+            class="hidden xl:block w-52 shrink-0 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto">
+            <div>
               <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Daftar Isi
               </p>
               <nav class="space-y-0.5">
                 <template v-for="item in toc" :key="item.id">
-                  <a
-                    :href="`#${item.id}`"
-                    :class="[
-                      'block border-l-2 py-1 pl-3 text-sm transition',
-                      activeHeading === item.id
-                        ? 'border-indigo-400 text-indigo-400'
-                        : 'border-slate-800 text-slate-400 hover:border-slate-600 hover:text-white',
-                    ]"
-                  >
+                  <a :href="`#${item.id}`" :class="[
+                    'block border-l-2 py-1 pl-3 text-sm transition',
+                    activeHeading === item.id
+                      ? 'border-indigo-400 text-indigo-400'
+                      : 'border-slate-800 text-slate-400 hover:border-slate-600 hover:text-white',
+                  ]">
                     {{ item.text }}
                   </a>
-                  <a
-                    v-for="child in item.children ?? []"
-                    :key="child.id"
-                    :href="`#${child.id}`"
-                    :class="[
-                      'block border-l-2 py-1 pl-5 text-sm transition',
-                      activeHeading === child.id
-                        ? 'border-indigo-400 text-indigo-400'
-                        : 'border-slate-800 text-slate-400 hover:border-slate-600 hover:text-white',
-                    ]"
-                  >
+                  <a v-for="child in item.children ?? []" :key="child.id" :href="`#${child.id}`" :class="[
+                    'block border-l-2 py-1 pl-5 text-sm transition',
+                    activeHeading === child.id
+                      ? 'border-indigo-400 text-indigo-400'
+                      : 'border-slate-800 text-slate-400 hover:border-slate-600 hover:text-white',
+                  ]">
                     {{ child.text }}
                   </a>
                 </template>
               </nav>
             </div>
+            <BuyCoffeeCard :compact="true" />
           </aside>
         </div>
       </template>
@@ -182,25 +167,94 @@ function getSlug(path: string) {
   @apply font-bold text-white mt-8 mb-3;
   scroll-margin-top: 5rem;
 }
-.prose :deep(h1) { @apply text-2xl; }
-.prose :deep(h2) { @apply text-xl border-b border-slate-800 pb-2; }
-.prose :deep(h3) { @apply text-lg; }
-.prose :deep(p) { @apply text-slate-300 leading-relaxed mb-4; }
-.prose :deep(a) { @apply text-indigo-400 underline hover:text-indigo-300; }
-.prose :deep(ul),
-.prose :deep(ol) { @apply mb-4 pl-6 text-slate-300; }
-.prose :deep(ul) { @apply list-disc; }
-.prose :deep(ol) { @apply list-decimal; }
-.prose :deep(li) { @apply mb-1; }
-.prose :deep(code) { @apply rounded bg-slate-800 px-1.5 py-0.5 font-mono text-sm text-indigo-300; }
-.prose :deep(pre) {
-  @apply relative mb-4 overflow-x-auto rounded-lg bg-slate-800 p-4;
+
+.prose :deep(h1) {
+  @apply text-2xl;
 }
-.prose :deep(pre code) { @apply bg-transparent p-0 text-sm text-slate-300; }
-.prose :deep(blockquote) { @apply mb-4 border-l-4 border-indigo-500/40 pl-4 italic text-slate-400; }
-.prose :deep(img) { @apply max-w-full rounded-lg; }
-.prose :deep(table) { @apply mb-4 w-full text-sm text-slate-300; }
-.prose :deep(th) { @apply border border-slate-700 bg-slate-800 px-3 py-2 text-left font-semibold text-white; }
-.prose :deep(td) { @apply border border-slate-700 px-3 py-2; }
-.prose :deep(hr) { @apply my-6 border-slate-800; }
+
+.prose :deep(h2) {
+  @apply text-xl border-b border-slate-800 pb-2;
+}
+
+.prose :deep(h3) {
+  @apply text-lg;
+}
+
+.prose :deep(p) {
+  @apply text-slate-300 leading-relaxed mb-4;
+}
+
+.prose :deep(a) {
+  @apply text-indigo-400 underline hover:text-indigo-300;
+}
+
+.prose :deep(ul),
+.prose :deep(ol) {
+  @apply mb-4 pl-6 text-slate-300;
+}
+
+.prose :deep(ul) {
+  @apply list-disc;
+}
+
+.prose :deep(ol) {
+  @apply list-decimal;
+}
+
+.prose :deep(li) {
+  @apply mb-1;
+}
+
+/* inline code (bukan di dalam pre) */
+.prose :deep(:not(pre) > code) {
+  @apply rounded-md px-1.5 py-0.5 font-mono text-sm text-indigo-300;
+}
+
+/* wrapper pre — beri border + shadow supaya terasa seperti "card" terpisah */
+.prose :deep(pre) {
+  @apply relative mb-6 overflow-hidden rounded-xl p-0;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.prose :deep(.shiki) {
+  @apply p-5 overflow-x-auto text-sm leading-7;
+  background-color: var(--shiki-dark-bg, #1e1e2e) !important;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+}
+
+/* INI ROOT CAUSE-NYA — Shiki generate --shiki-dark tapi tidak ada yang pakai */
+.prose :deep(.shiki) span {
+  color: var(--shiki-dark) !important;
+}
+
+/* baris kosong tetap punya tinggi supaya tidak kolaps */
+.prose :deep(.shiki .line) {
+  display: block;
+  min-height: 1.5rem;
+}
+
+.prose :deep(blockquote) {
+  @apply mb-4 border-l-4 border-indigo-500/40 pl-4 italic text-white;
+}
+
+.prose :deep(img) {
+  @apply max-w-full rounded-lg;
+}
+
+.prose :deep(table) {
+  @apply mb-4 w-full text-sm text-slate-300;
+}
+
+.prose :deep(th) {
+  @apply border border-slate-700 bg-slate-800 px-3 py-2 text-left font-semibold text-white;
+}
+
+.prose :deep(td) {
+  @apply border border-slate-700 px-3 py-2;
+}
+
+.prose :deep(hr) {
+  @apply my-6 border-slate-800;
+}
 </style>

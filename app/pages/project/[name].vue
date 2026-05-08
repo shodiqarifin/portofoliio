@@ -208,6 +208,8 @@ const getLangColor = (lang: string | null) =>
             <div v-if="readmeHtml" class="prose" v-html="readmeHtml" />
             <p v-else class="text-sm text-slate-500">Repo ini belum punya README.</p>
           </div>
+
+          <BuyCoffeeCard label="Project ini berguna?" />
         </div>
 
         <!-- TOC sidebar -->
@@ -232,6 +234,7 @@ const getLangColor = (lang: string | null) =>
                 {{ item.text }}
               </a>
             </nav>
+            <BuyCoffeeCard :compact="true" />
           </div>
         </aside>
 
