@@ -19,7 +19,7 @@
   <!-- Full: untuk bawah konten -->
   <div
     v-else
-    class="mt-8 flex flex-col items-center gap-4 rounded-xl border border-yellow-500/20 bg-yellow-500/5 p-6 text-center"
+    class="mt-8 flex flex-col items-center gap-4 rounded-xl border border-red-500/20 bg-red-500/5 p-6 text-center"
   >
     <span class="text-3xl">☕</span>
     <div>
