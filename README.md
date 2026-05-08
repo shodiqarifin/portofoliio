@@ -1,75 +1,45 @@
-# Nuxt Minimal Starter
+# Shodiq Arifin — Personal Website
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+> Source code for my personal website and portfolio at [sdqstack.in](https://sdqstack.in)
 
-## Setup
+![Nuxt](https://img.shields.io/badge/Nuxt-4-00DC82?style=flat&logo=nuxt.js)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38BDF8?style=flat&logo=tailwindcss)
+![Deployed on GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-222?style=flat&logo=github)
 
-Make sure to install dependencies:
+## Features
+
+- Personal portfolio with project showcase from GitHub
+- Blog powered by Nuxt Content (Markdown)
+- Syntax highlighting for code blocks
+- Deployed automatically via GitHub Actions
+
+## Tech Stack
+
+| | |
+|---|---|
+| Framework | [Nuxt 4](https://nuxt.com) |
+| Styling | [Tailwind CSS](https://tailwindcss.com) |
+| Content | [Nuxt Content v3](https://content.nuxt.com) |
+| Hosting | GitHub Pages |
+
+## Development
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Writing Blog Posts
 
-Build the application for production:
+Add a new `.md` file to `content/blog/` with this frontmatter:
 
-```bash
-# npm
-npm run build
+```md
+---
+title: Post title
+description: Short description
+date: 2025-01-01
+tags: [nuxt, vue]
+---
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+Content here...
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
