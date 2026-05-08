@@ -9,4 +9,15 @@ export default defineNuxtConfig({
       langs: ['javascript', 'typescript', 'vue', 'bash', 'css', 'html', 'json', 'markdown', 'python', 'ts', 'js'],
     },
   },
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      const repos: any[] = await fetch('https://api.github.com/users/shodiqarifin/repos?per_page=100')
+        .then(r => r.json()).catch(() => [])
+      nitroConfig.prerender = nitroConfig.prerender || {}
+      nitroConfig.prerender.routes = [
+        ...(nitroConfig.prerender.routes || []),
+        ...repos.map(r => `/project/${r.name}`),
+      ]
+    },
+  },
 })
