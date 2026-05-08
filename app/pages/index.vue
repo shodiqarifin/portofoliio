@@ -1,10 +1,10 @@
 <script setup lang="ts">
 useHead({
-    title: 'Sdq Stack',
+    title: 'Shodiq Arifin',
     meta: [
         {
             name: 'description',
-            content: 'This is personal website SdqStack'
+            content: 'Personal website Shodiq Arifin — Full Stack Developer.'
         }
     ]
 })
