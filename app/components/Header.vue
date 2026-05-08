@@ -4,14 +4,14 @@
             <NuxtLink to="/" class="text-2xl font-bold">Shodiq Arifin</NuxtLink>
             <NavMenu />
             <a
-                href="https://buymeacoffee.com/shodiqarifin"
+                href="https://trakteer.id/shodiq_arifin"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="transition opacity-80 hover:opacity-100"
             >
                 <img
-                    src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-                    alt="Buy Me A Coffee"
+                    src="https://cdn.trakteer.id/images/embed/trbtn-red-1.png"
+                    alt="Trakteer"
                     class="h-8 w-auto"
                 />
             </a>
