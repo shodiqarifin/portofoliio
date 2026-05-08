@@ -1,24 +1,11 @@
 <script setup lang="ts">
-const posts = [
-  {
-    slug: 'streamlining-design-process',
-    title: 'Streamlining your design process today.',
-    excerpt: "In today's fast-paced digital landscape, fostering seamless collaboration among Developers and IT Operations.",
-    image: 'https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    slug: 'nuxt-static-blog',
-    title: 'Bikin static blog dengan Nuxt Content.',
-    excerpt: 'Nuxt Content bikin kita bisa nulis artikel dalam markdown dan auto-generate halaman tanpa backend.',
-    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    slug: 'tailwind-tips',
-    title: 'Tailwind CSS tips yang sering gua pakai.',
-    excerpt: 'Beberapa utility class dan pola Tailwind yang bikin kerjaan frontend jauh lebih cepat.',
-    image: 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=600&auto=format&fit=crop',
-  },
-]
+const { data: posts } = await useAsyncData('blog-featured', () =>
+  queryCollection('blog').order('date', 'DESC').limit(2).all()
+)
+
+function getSlug(path: string) {
+  return path.split('/').pop() ?? ''
+}
 </script>
 
 <template>
@@ -38,10 +25,10 @@ const posts = [
       <div class="grid gap-4 lg:grid-cols-2">
         <article
           v-for="post in posts"
-          :key="post.slug"
+          :key="post.path"
           class="group flex overflow-hidden rounded-xl border border-slate-800 bg-slate-900/40 transition duration-300 hover:border-indigo-500/50 hover:bg-slate-900/70"
         >
-          <div class="w-36 shrink-0 overflow-hidden sm:w-44">
+          <div v-if="post.image" class="w-36 shrink-0 overflow-hidden sm:w-44">
             <img
               :src="post.image"
               :alt="post.title"
@@ -50,11 +37,20 @@ const posts = [
           </div>
           <div class="flex flex-col justify-between p-5">
             <div>
+              <div class="flex flex-wrap gap-1 mb-2">
+                <span
+                  v-for="tag in post.tags.slice(0, 2)"
+                  :key="tag"
+                  class="rounded-full bg-indigo-500/10 px-2 py-0.5 text-xs text-indigo-300"
+                >
+                  {{ tag }}
+                </span>
+              </div>
               <h3 class="text-base font-semibold leading-snug text-white">{{ post.title }}</h3>
-              <p class="mt-2 text-sm text-slate-400 line-clamp-3">{{ post.excerpt }}</p>
+              <p class="mt-2 text-sm text-slate-400 line-clamp-3">{{ post.description }}</p>
             </div>
             <NuxtLink
-              :to="`/blog/${post.slug}`"
+              :to="`/blog/${getSlug(post.path)}`"
               class="mt-4 inline-flex items-center gap-1 rounded-base border border-white/10 px-4 py-2 text-sm text-white/70 transition hover:bg-indigo-500/50 hover:text-white w-fit"
             >
               Read more
