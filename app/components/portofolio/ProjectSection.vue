@@ -42,7 +42,7 @@ const getLangColor = (lang: string | null) =>
   <section id="projects" class="relative py-24 border-b border-slate-800">
     <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,_rgba(99,102,241,0.07),_transparent_65%)]" />
 
-    <div class="max-w-7xl mx-auto px-2 md:px-0">
+    <div class="max-w-7xl mx-auto px-4 md:px-0">
       <SectionHeader title="Projects" subtitle="Beberapa hal yang gua bikin.">
         <NuxtLink to="/project" class="hidden text-sm text-indigo-400 transition hover:text-indigo-300 sm:inline">
           View all →

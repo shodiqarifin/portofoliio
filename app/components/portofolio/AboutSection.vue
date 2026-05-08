@@ -2,7 +2,7 @@
   <section id="about" class="relative py-24">
     <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(99,102,241,0.07),_transparent_65%)]" />
 
-    <div class="max-w-7xl mx-auto px-2 md:px-0">
+    <div class="max-w-7xl mx-auto px-4 md:px-0">
       <div class="grid gap-12 md:grid-cols-2 md:items-center">
 
         <div>

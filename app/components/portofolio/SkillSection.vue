@@ -19,7 +19,7 @@ const groups = [
   <section id="skills" class="relative py-24">
     <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_rgba(99,102,241,0.06),_transparent_70%)]" />
 
-    <div class="max-w-7xl mx-auto px-2 md:px-0">
+    <div class="max-w-7xl mx-auto px-4 md:px-0">
       <SectionHeader title="Skills" subtitle="Tech stack yang sering gua pake" />
 
       <div class="grid gap-6 md:grid-cols-3">

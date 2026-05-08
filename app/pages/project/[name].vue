@@ -137,7 +137,7 @@ const getLangColor = (lang: string | null) =>
 
 <template>
   <div class="py-16">
-    <div class="max-w-7xl mx-auto px-2 md:px-0">
+    <div class="max-w-7xl mx-auto px-4 md:px-0">
 
       <!-- Top nav -->
       <div class="mb-10 flex items-center justify-between">

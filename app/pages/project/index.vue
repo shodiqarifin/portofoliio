@@ -49,7 +49,7 @@ const getLangColor = (lang: string | null) =>
 
 <template>
   <div class="py-24">
-    <div class="max-w-7xl mx-auto px-2 md:px-0">
+    <div class="max-w-7xl mx-auto px-4 md:px-0">
       <SectionHeader
         title="Projects"
         subtitle="Semua hal yang gua bikin dan pernah gua push ke GitHub."

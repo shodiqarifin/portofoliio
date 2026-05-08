@@ -18,7 +18,7 @@ function formatDate(dateStr: string) {
   <section id="latest-posts" class="relative py-24 border-t border-slate-800">
     <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_right,_rgba(99,102,241,0.07),_transparent_65%)]" />
 
-    <div class="max-w-7xl mx-auto px-2 md:px-0">
+    <div class="max-w-7xl mx-auto px-4 md:px-0">
       <SectionHeader title="Latest from blog" subtitle="Catatan, ide, dan hal-hal yang lagi gua pelajari.">
         <NuxtLink
           to="/blog"

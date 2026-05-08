@@ -61,7 +61,7 @@ function getSlug(path: string) {
 
 <template>
   <div class="py-16">
-    <div class="max-w-7xl mx-auto px-2 md:px-0">
+    <div class="max-w-7xl mx-auto px-4 md:px-0">
 
       <div class="mb-10">
         <NuxtLink to="/blog" class="flex items-center gap-1.5 text-sm text-slate-400 transition hover:text-white w-fit">

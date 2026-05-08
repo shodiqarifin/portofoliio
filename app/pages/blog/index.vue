@@ -41,7 +41,7 @@ function getSlug(path: string) {
 
 <template>
   <div class="py-24">
-    <div class="max-w-7xl mx-auto px-2 md:px-0">
+    <div class="max-w-7xl mx-auto px-4 md:px-0">
       <SectionHeader title="Blog"
         subtitle="Artikel tentang web development, tips coding, dan hal-hal yang gua pelajari." />
 
