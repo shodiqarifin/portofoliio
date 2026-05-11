@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "generate:og": "node scripts/generate-og.mjs"
   },
   "dependencies": {
     "@nuxt/content": "^3.13.0",
@@ -19,6 +20,7 @@
     "vue-router": "^5.0.6"
   },
   "devDependencies": {
-    "@types/marked": "^5.0.2"
+    "@types/marked": "^5.0.2",
+    "puppeteer": "^24.43.1"
   }
 }
