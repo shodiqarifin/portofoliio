@@ -219,7 +219,7 @@ const getLangColor = (lang: string | null) =>
 
         <!-- TOC sidebar -->
         <aside v-if="toc.length" class="hidden xl:block w-52 shrink-0">
-          <div class="sticky top-8">
+          <div class="sticky top-20">
             <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
               On this page
             </p>
