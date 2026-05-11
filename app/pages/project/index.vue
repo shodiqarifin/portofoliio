@@ -13,9 +13,7 @@ interface GithubRepo {
 
 useHead({ title: 'Projects — Shodiq Arifin' })
 
-const { data: repos, error } = await useFetch<GithubRepo[]>(
-  'https://api.github.com/users/shodiqarifin/repos?sort=updated&per_page=30',
-)
+const { data: repos, error, refresh } = await useFetch<GithubRepo[]>('/api/github/repos')
 
 const allProjects = computed(() =>
   repos.value
@@ -55,9 +53,11 @@ const getLangColor = (lang: string | null) =>
         subtitle="Semua hal yang gua bikin dan pernah gua push ke GitHub."
       />
 
-      <div v-if="error" class="py-16 text-center text-slate-400">
-        Gagal memuat data dari GitHub. Coba refresh halaman.
-      </div>
+      <FetchError
+        v-if="error"
+        message="Gagal memuat data dari GitHub. Mungkin kena rate limit — coba lagi sebentar."
+        @retry="refresh()"
+      />
 
       <div v-else-if="projects.length === 0" class="py-16 text-center text-slate-400">
         Belum ada project yang bisa ditampilkan.

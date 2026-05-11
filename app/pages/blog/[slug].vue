@@ -5,11 +5,22 @@ const { data: post } = await useAsyncData(route.path, () =>
   queryCollection('blog').path(route.path).first()
 )
 
-useHead({
+if (!post.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
+}
+
+useSeoMeta({
   title: `${post.value?.title ?? 'Blog'} — Shodiq Arifin`,
-  meta: [
-    { name: 'description', content: post.value?.description ?? '' }
-  ]
+  description: post.value?.description ?? '',
+  ogTitle: `${post.value?.title ?? 'Blog'} — Shodiq Arifin`,
+  ogDescription: post.value?.description ?? '',
+  ogImage: post.value?.image ?? 'https://sdqstack.in/og-image.png',
+  ogUrl: `https://sdqstack.in${route.path}`,
+  ogType: 'article',
+  twitterCard: 'summary_large_image',
+  twitterTitle: `${post.value?.title ?? 'Blog'} — Shodiq Arifin`,
+  twitterDescription: post.value?.description ?? '',
+  twitterImage: post.value?.image ?? 'https://sdqstack.in/og-image.png',
 })
 
 const { data: allPosts } = await useAsyncData('blog-all', () =>

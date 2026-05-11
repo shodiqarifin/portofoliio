@@ -25,7 +25,16 @@ interface TocItem {
 const route = useRoute()
 const name = route.params.name as string
 
-useHead({ title: `${name} — Shodiq Arifin` })
+useSeoMeta({
+  title: `${name} — Shodiq Arifin`,
+  ogTitle: `${name} — Shodiq Arifin`,
+  ogImage: 'https://sdqstack.in/og-image.png',
+  ogUrl: `https://sdqstack.in/project/${name}`,
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: `${name} — Shodiq Arifin`,
+  twitterImage: 'https://sdqstack.in/og-image.png',
+})
 
 function slugify(text: string) {
   return text
@@ -57,19 +66,15 @@ marked.use({
   },
 })
 
-const { data, error } = await useAsyncData(`project-${name}`, async () => {
-  const [repo, readme] = await Promise.all([
-    $fetch<GithubRepo>(`https://api.github.com/repos/shodiqarifin/${name}`),
-    $fetch<ReadmeResponse>(`https://api.github.com/repos/shodiqarifin/${name}/readme`).catch(() => null),
-  ])
-  return { repo, readme }
-})
+const { data, error } = await useFetch<{ repo: GithubRepo | null, readme: ReadmeResponse | null }>(
+  `/api/github/${name}`,
+)
 
 if (error.value || !data.value?.repo) {
-  await navigateTo('/project')
+  throw createError({ statusCode: 404, statusMessage: 'Project not found', fatal: true })
 }
 
-const repo = computed(() => data.value!.repo)
+const repo = computed(() => data.value?.repo)
 
 const rawReadme = computed(() => {
   const content = data.value?.readme?.content
@@ -85,11 +90,11 @@ const toc = computed<TocItem[]>(() => {
   for (const line of rawReadme.value.split('\n')) {
     const h2 = line.match(/^## (.+)/)
     const h3 = line.match(/^### (.+)/)
-    if (h2) {
+    if (h2?.[1]) {
       const text = h2[1].replace(/[*`[\]]/g, '').trim()
       items.push({ id: slugify(text), text, level: 2 })
     }
-    else if (h3) {
+    else if (h3?.[1]) {
       const text = h3[1].replace(/[*`[\]]/g, '').trim()
       items.push({ id: slugify(text), text, level: 3 })
     }
@@ -137,7 +142,7 @@ const getLangColor = (lang: string | null) =>
 
 <template>
   <div class="py-16">
-    <div class="max-w-7xl mx-auto px-4 md:px-0">
+    <div v-if="repo" class="max-w-7xl mx-auto px-4 md:px-0">
 
       <!-- Top nav -->
       <div class="mb-10 flex items-center justify-between">
