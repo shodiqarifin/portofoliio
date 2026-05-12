@@ -371,9 +371,9 @@ Setiap delete cascade sudah setup:
 
 ## Langkah Selanjutnya
 
-Artikel selanjutnya: **Transaction CRUD**
+Artikel selanjutnya: **Autentikasi dengan Better Auth**
 
-Schema sudah ada. Sekarang kita build API routes dan UI untuk tambah, lihat, edit, dan hapus transaksi. Ini bagian yang paling banyak moving parts — form validation, server handler, database query, UI update.
+Schema sudah ada. Sekarang kita setup autentikasi — Better Auth client, halaman signup & login, auto-setup wallet + kategori saat user baru mendaftar, dan route middleware untuk protect halaman yang butuh login.
 
 ------
 
@@ -386,4 +386,4 @@ Schema sudah ada. Sekarang kita build API routes dan UI untuk tambah, lihat, edi
 ------
 
 **Status:** ✅ Siap
- **Artikel Selanjutnya:** 04-better-auth
+ **Artikel Selanjutnya:** [Autentikasi dengan Better Auth](https://sdqstack.in/blog/money-tracker-better-auth)
