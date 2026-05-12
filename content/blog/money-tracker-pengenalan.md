@@ -233,4 +233,4 @@ Artikel selanjutnya: **Setup Proyek**
 ---
 
 **Status:** ✅ Siap  
-**Artikel Selanjutnya:** 02-setup-proyek
+**Artikel Selanjutnya:** [Setup Project](https://sdqstack.in/blog/money-tracker-setup)
