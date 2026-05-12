@@ -345,4 +345,4 @@ Kita design semua tabel — users, wallets, categories, transactions — langsun
 
 **Status:** ✅ Siap 
 
-**Artikel Selanjutnya:** database-shcema
+**Artikel Selanjutnya:** [Database Schema](https://sdqstack.in/blog/money-tracker-database-schema)
