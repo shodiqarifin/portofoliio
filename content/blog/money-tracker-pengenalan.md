@@ -4,6 +4,8 @@ description: "Membangun Aplikasi Pencatat Keuangan dengan JavaScript Modern"
 date: "2024-05-11"
 tags: ["project","money tracker","nuxt"]
 image: "https://sdqstack.in/images/money-tracker-hero.png"
+playlist: "money-tracker"
+playlist_order: 1
 ---
 
 ## Apa Sih Money Tracker Ini?

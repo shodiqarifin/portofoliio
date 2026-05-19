@@ -4,6 +4,8 @@ description: "Setup Nuxt 4 + Tailwind CSS v4 + Drizzle ORM + SQLite + Better Aut
 date: "2024-05-12"
 tags: ["project","money tracker","nuxt"]
 image: "https://sdqstack.in/images/money-tracker-hero.png"
+playlist: "money-tracker"
+playlist_order: 2
 ---
 
 ## Apa Yang Kita Setup

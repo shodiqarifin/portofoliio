@@ -10,6 +10,8 @@ export const collections = {
       date: z.string(),
       tags: z.array(z.string()),
       image: z.string().optional(),
+      playlist: z.string().optional(),
+      playlist_order: z.number().optional(),
     }),
   }),
 }

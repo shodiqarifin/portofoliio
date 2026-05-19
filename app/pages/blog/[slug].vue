@@ -24,23 +24,50 @@ useSeoMeta({
   twitterImage: post.value?.image ?? 'https://sdqstack.in/og-image.png',
 })
 
-const { data: allPosts } = await useAsyncData('blog-all', () =>
-  queryCollection('blog').order('date', 'DESC').select('path', 'title').all()
-)
+// Playlist-aware prev/next: if post belongs to a playlist, navigate within playlist order.
+// Otherwise fall back to global date order.
+const playlistId = post.value?.playlist as string | undefined
+
+const { data: playlistPosts } = playlistId
+  ? await useAsyncData(`playlist-nav-${playlistId}`, () =>
+      queryCollection('blog')
+        .where('playlist', '=', playlistId)
+        .where('date', '<=', today)
+        .order('playlist_order', 'ASC')
+        .select('path', 'title')
+        .all()
+    )
+  : { data: ref(null) }
+
+const { data: allPosts } = !playlistId
+  ? await useAsyncData('blog-all', () =>
+      queryCollection('blog').order('date', 'DESC').select('path', 'title').all()
+    )
+  : { data: ref(null) }
+
+const navPosts = computed(() => playlistPosts.value ?? allPosts.value ?? [])
 
 const currentIndex = computed(() =>
-  allPosts.value?.findIndex(p => p.path === post.value?.path) ?? -1
+  navPosts.value.findIndex(p => p.path === post.value?.path) ?? -1
 )
-const prevPost = computed(() =>
-  currentIndex.value < (allPosts.value?.length ?? 0) - 1
-    ? allPosts.value![currentIndex.value + 1]
+
+const prevPost = computed(() => {
+  if (playlistId) {
+    return currentIndex.value > 0 ? navPosts.value[currentIndex.value - 1] : null
+  }
+  return currentIndex.value < navPosts.value.length - 1
+    ? navPosts.value[currentIndex.value + 1]
     : null
-)
-const nextPost = computed(() =>
-  currentIndex.value > 0
-    ? allPosts.value![currentIndex.value - 1]
-    : null
-)
+})
+
+const nextPost = computed(() => {
+  if (playlistId) {
+    return currentIndex.value < navPosts.value.length - 1
+      ? navPosts.value[currentIndex.value + 1]
+      : null
+  }
+  return currentIndex.value > 0 ? navPosts.value[currentIndex.value - 1] : null
+})
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('id-ID', {
@@ -69,6 +96,9 @@ onUnmounted(() => observer?.disconnect())
 function getSlug(path: string) {
   return path.split('/').pop() ?? ''
 }
+
+const prevLabel = computed(() => playlistId ? '← Part Sebelumnya' : '← Artikel Sebelumnya')
+const nextLabel = computed(() => playlistId ? 'Part Berikutnya →' : 'Artikel Berikutnya →')
 </script>
 
 <template>
@@ -123,22 +153,29 @@ function getSlug(path: string) {
             <div class="mt-10 grid gap-4 sm:grid-cols-2">
               <NuxtLink v-if="prevPost" :to="`/blog/${getSlug(prevPost.path)}`"
                 class="flex flex-col rounded-xl border border-slate-800 p-4 transition hover:border-indigo-500/50 hover:bg-slate-900/60">
-                <span class="mb-1 text-xs text-slate-500">← Artikel Sebelumnya</span>
+                <span class="mb-1 text-xs text-slate-500">{{ prevLabel }}</span>
                 <span class="text-sm font-medium text-white line-clamp-2">{{ prevPost.title }}</span>
               </NuxtLink>
               <div v-else />
 
               <NuxtLink v-if="nextPost" :to="`/blog/${getSlug(nextPost.path)}`"
                 class="flex flex-col rounded-xl border border-slate-800 p-4 text-right transition hover:border-indigo-500/50 hover:bg-slate-900/60">
-                <span class="mb-1 text-xs text-slate-500">Artikel Berikutnya →</span>
+                <span class="mb-1 text-xs text-slate-500">{{ nextLabel }}</span>
                 <span class="text-sm font-medium text-white line-clamp-2">{{ nextPost.title }}</span>
               </NuxtLink>
             </div>
           </div>
 
-          <aside v-if="toc.length"
-            class="hidden xl:block w-52 shrink-0 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto">
-            <div>
+          <aside v-if="toc.length || post.playlist"
+            class="hidden xl:block w-80 shrink-0 sticky top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto">
+
+            <PlaylistWidget
+              v-if="post.playlist"
+              :playlist-id="post.playlist"
+              :current-path="post.path"
+            />
+
+            <div v-if="toc.length">
               <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Daftar Isi
               </p>
@@ -163,6 +200,7 @@ function getSlug(path: string) {
                 </template>
               </nav>
             </div>
+
             <BuyCoffeeCard :compact="true" />
           </aside>
         </div>

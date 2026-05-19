@@ -5,6 +5,7 @@ const links = [
   { to: '/', label: 'Home' },
   { to: '/project', label: 'Project' },
   { to: '/blog', label: 'Blog' },
+  { to: '/playlist', label: 'Playlist' },
 ]
 
 const isActive = (to: string) =>

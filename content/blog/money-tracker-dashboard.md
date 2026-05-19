@@ -4,6 +4,8 @@ description: "Aggregasi SQL, Summary Stats, dan Halaman Dashboard"
 date: "2024-05-17"
 tags: ["project","money tracker","nuxt"]
 image: "https://sdqstack.in/images/money-tracker-hero.png"
+playlist: "money-tracker"
+playlist_order: 7
 ---
 
 ## Apa Yang Kita Bangun
