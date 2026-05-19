@@ -860,4 +860,5 @@ Transaksi butuh kategori. Di artikel berikutnya kita build:
 ------
 
 **Status:** ✅ Siap
- **Artikel Selanjutnya:** Manajemen Kategori
+
+ **Artikel Selanjutnya:** [Manajemen Kategori](https://sdqstack.in/blog/money-tracker-manajemen-kategori)
