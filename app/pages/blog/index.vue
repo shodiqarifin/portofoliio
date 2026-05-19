@@ -6,8 +6,9 @@ useHead({
   ]
 })
 
+const today = new Date().toISOString().slice(0, 10)
 const { data: posts } = await useAsyncData('blog-list', () =>
-  queryCollection('blog').order('date', 'DESC').all()
+  queryCollection('blog').where('date', '<=', today).order('date', 'DESC').all()
 )
 
 const searchQuery = ref('')

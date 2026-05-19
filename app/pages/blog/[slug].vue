@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const route = useRoute()
+const today = new Date().toISOString().slice(0, 10)
 
 const { data: post } = await useAsyncData(route.path, () =>
   queryCollection('blog').path(route.path).first()
 )
 
-if (!post.value) {
+if (!post.value || post.value.date > today) {
   throw createError({ statusCode: 404, statusMessage: 'Post not found', fatal: true })
 }
 

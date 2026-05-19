@@ -1,6 +1,7 @@
 <script setup lang="ts">
+const today = new Date().toISOString().slice(0, 10)
 const { data: posts } = await useAsyncData('blog-featured', () =>
-  queryCollection('blog').order('date', 'DESC').limit(2).all()
+  queryCollection('blog').where('date', '<=', today).order('date', 'DESC').limit(2).all()
 )
 
 function getSlug(path: string) {
