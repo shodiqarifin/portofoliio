@@ -3,7 +3,9 @@ title: "10 Tips Tailwind CSS yang Wajib Kamu Tahu"
 description: "Kumpulan tips dan trik Tailwind CSS untuk meningkatkan produktivitas dan kualitas UI yang kamu buat sehari-hari."
 date: "2024-02-20"
 tags: ["tailwind", "css", "frontend"]
-image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+image: "https://sdqstack.in/images/tips-tailwindcss.png"
+playlist: "tips"
+playlist_order: 1
 ---
 
 ## Kenapa Tailwind CSS?
