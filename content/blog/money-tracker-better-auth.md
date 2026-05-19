@@ -1,7 +1,7 @@
 ---
 title: "Money Tracker: Autentikasi dengan Better Auth"
 description: "Signup, Login, dan Auto-Setup Data User"
-date: "2024-05-14"
+date: "2026-05-14"
 tags: ["project","money tracker","nuxt"]
 image: "https://sdqstack.in/images/money-tracker-hero.png"
 playlist: "money-tracker"

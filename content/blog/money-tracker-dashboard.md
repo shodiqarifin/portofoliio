@@ -1,7 +1,7 @@
 ---
 title: "Money Tracker: Dashboard"
 description: "Aggregasi SQL, Summary Stats, dan Halaman Dashboard"
-date: "2024-05-17"
+date: "2026-05-17"
 tags: ["project","money tracker","nuxt"]
 image: "https://sdqstack.in/images/money-tracker-hero.png"
 playlist: "money-tracker"

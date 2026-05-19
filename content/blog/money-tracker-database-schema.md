@@ -1,7 +1,7 @@
 ---
 title: "Money Tracker: Database Schema"
 description: "Design Tabel dengan Drizzle ORM + SQLite"
-date: "2024-05-13"
+date: "2026-05-13"
 tags: ["project","money tracker","nuxt"]
 image: "https://sdqstack.in/images/money-tracker-hero.png"
 playlist: "money-tracker"

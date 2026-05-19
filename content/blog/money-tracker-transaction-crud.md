@@ -1,7 +1,7 @@
 ---
 title: "Money Tracker: Transaction CRUD"
 description: "Tambah, Lihat, Edit, Hapus Transaksi dengan Nuxt + Drizzle"
-date: "2024-05-15"
+date: "2026-05-15"
 tags: ["project","money tracker","nuxt"]
 image: "https://sdqstack.in/images/money-tracker-hero.png"
 playlist: "money-tracker"

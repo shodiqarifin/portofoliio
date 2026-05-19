@@ -1,7 +1,7 @@
 ---
 title: "Money Tracker: Manajemen Kategori"
 description: "CRUD Kategori dengan Logic Delete yang Aman"
-date: "2024-05-16"
+date: "2026-05-16"
 tags: ["project","money tracker","nuxt"]
 image: "https://sdqstack.in/images/money-tracker-hero.png"
 playlist: "money-tracker"

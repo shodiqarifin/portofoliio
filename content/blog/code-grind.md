@@ -1,7 +1,7 @@
 ---
 title: "code.grind"
 description: "Bikin Habit Tracker Sendiri Untuk Boost Konsistensi Belajar"
-date: "2024-05-18"
+date: "2026-05-18"
 tags: ["project","code-grind"]
 image: "https://sdqstack.in/images/code-grind.png"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Money Tracker: Setup"
 description: "Setup Nuxt 4 + Tailwind CSS v4 + Drizzle ORM + SQLite + Better Auth"
-date: "2024-05-12"
+date: "2026-05-12"
 tags: ["project","money tracker","nuxt"]
 image: "https://sdqstack.in/images/money-tracker-hero.png"
 playlist: "money-tracker"
