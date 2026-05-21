@@ -142,6 +142,13 @@ const nextLabel = computed(() => playlistId ? 'Part Berikutnya →' : 'Artikel B
           <img :src="post.image" :alt="post.title" class="w-full object-cover max-h-[650px]" />
         </div>
 
+        <PlaylistWidget
+          v-if="post.playlist"
+          class="xl:hidden mb-6"
+          :playlist-id="post.playlist"
+          :current-path="post.path"
+        />
+
         <div class="flex gap-12">
           <div class="min-w-0 flex-1">
             <div class="rounded-xl border border-slate-800 bg-slate-900/40 p-8">
@@ -176,7 +183,7 @@ const nextLabel = computed(() => playlistId ? 'Part Berikutnya →' : 'Artikel B
             />
 
             <div v-if="toc.length">
-              <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <p class="mb-3 mt-8 text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Daftar Isi
               </p>
               <nav class="space-y-0.5">
